@@ -1,0 +1,20 @@
+[project]
+name = "birdproject"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "birdnet-analyzer",
+    "librosa>=0.11.0",
+    "numpy>=2.4.4",
+    "python-dotenv>=1.2.2",
+    "pyyaml>=6.0.3",
+    "soundfile>=0.13.1",
+    "tqdm>=4.67.3",
+    "xenocanto-api",
+]
+
+[tool.uv.sources]
+xenocanto-api = { git = "https://github.com/bghani/xcapi" }
+birdnet-analyzer = { git = "https://github.com/kahst/BirdNET-Analyzer.git" }

@@ -1,0 +1,158 @@
+# ============================================
+# 北部九州野鳥BirdNET追加学習 設定ファイル
+# ============================================
+
+# 北部九州の各県バウンディングボックス (緯度経度)
+prefectures:
+  fukuoka:
+    name: "福岡県"
+    lat_min: 33.0
+    lon_min: 130.0
+    lat_max: 34.0
+    lon_max: 131.2
+  saga:
+    name: "佐賀県"
+    lat_min: 33.0
+    lon_min: 129.7
+    lat_max: 33.5
+    lon_max: 130.5
+  nagasaki:
+    name: "長崎県"
+    lat_min: 32.5
+    lon_min: 128.5
+    lat_max: 33.5
+    lon_max: 130.2
+  oita:
+    name: "大分県"
+    lat_min: 32.7
+    lon_min: 130.8
+    lat_max: 33.7
+    lon_max: 132.0
+  kumamoto:
+    name: "熊本県"
+    lat_min: 32.0
+    lon_min: 130.0
+    lat_max: 33.2
+    lon_max: 131.3
+
+# 北部九州全体のバウンディングボックス（一括ダウンロード用）
+northern_kyushu_bbox:
+  lat_min: 32.0
+  lon_min: 128.5
+  lat_max: 34.0
+  lon_max: 132.0
+
+# ダウンロード対象の県リスト（ここでフィルタ）
+target_prefectures:
+  - fukuoka
+  - saga
+  - nagasaki
+  - oita
+  # - kumamoto  # 必要に応じてコメント解除
+
+# 北部九州の代表的な野鳥（英名で指定 - Xeno-canto検索用）
+target_species:
+  # ========== 身近な鳥 ==========
+  - en: "Eurasian Tree Sparrow"
+  - en: "Brown-eared Bulbul"
+  - en: "Japanese White-eye"
+  - en: "Oriental Turtle Dove"
+  - en: "Eurasian Magpie"
+
+  # ========== 水辺の鳥 ==========
+  - en: "Eastern Spot-billed Duck"
+  - en: "Little Egret"
+  - en: "Grey Heron"
+  - en: "Great Egret"
+  - en: "Great Cormorant"
+  - en: "Common Kingfisher"
+
+  # ========== セキレイ類 ==========
+  - en: "White Wagtail"
+  - en: "Japanese Wagtail"
+  - en: "Grey Wagtail"
+
+  # ========== カモ類 ==========
+  - en: "Eurasian Wigeon"
+  - en: "Mallard"
+  - en: "Common Teal"
+  - en: "Common Coot"
+  - en: "Common Moorhen"
+  - en: "Little Grebe"
+
+  # ========== ヒタキ・ツグミ類 ==========
+  - en: "Daurian Redstart"
+  - en: "Blue Rock Thrush"
+  - en: "Dusky Thrush"
+  - en: "Pale Thrush"
+  - en: "Narcissus Flycatcher"
+  - en: "Grey-streaked Flycatcher"
+
+  # ========== シジュウカラ・エナガ ==========
+  - en: "Japanese Tit"
+  - en: "Varied Tit"
+  - en: "Long-tailed Tit"
+
+  # ========== キツツキ類 ==========
+  - en: "Japanese Pygmy Woodpecker"
+  - en: "Japanese Green Woodpecker"
+
+  # ========== カラス・モズ ==========
+  - en: "Large-billed Crow"
+  - en: "Carrion Crow"
+  - en: "Bull-headed Shrike"
+
+  # ========== ウグイス ==========
+  - en: "Japanese Bush Warbler"
+
+  # ========== 猛禽類 ==========
+  - en: "Black Kite"
+  - en: "Common Buzzard"
+  - en: "Eurasian Sparrowhawk"
+
+  # ========== 渡り鳥・夏鳥 ==========
+  - en: "Barn Swallow"
+
+  # ========== 冬鳥 ==========
+  - en: "Brambling"
+  - en: "Hawfinch"
+  - en: "Eurasian Siskin"
+
+  # ========== アトリ・カワラヒワ ==========
+  - en: "Oriental Greenfinch"
+  - en: "Meadow Bunting"
+  - en: "Japanese Grosbeak"
+
+  # ========== カラス科 ==========
+  - en: "Eurasian Jay"
+  - en: "Azure-winged Magpie"
+
+  # ========== カモメ ==========
+  - en: "Black-tailed Gull"
+
+  # ========== 追加 ==========
+  - en: "Blue Rock Thrush"
+
+# ダウンロード設定
+download:
+  country: "Japan"
+  quality: ">C"          # C評価以上の品質
+  group: "birds"
+  output_dir: "./data/raw"
+  max_recordings_per_species: 100  # 種あたり最大録音数
+
+# 前処理設定
+preprocessing:
+  segment_length_sec: 3     # BirdNETの入力長（3秒固定）
+  sample_rate: 48000         # BirdNET内部サンプルレート
+  mono: true
+  min_segments_per_species: 10  # 最低セグメント数（これ以下の種はスキップ）
+  output_dir: "./data/training"
+
+# BirdNET学習設定
+training:
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  hidden_units: 0           # 0 = 自動
+  output_dir: "./models"
