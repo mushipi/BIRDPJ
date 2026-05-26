@@ -1,4 +1,4 @@
-# BIRDPJ — 北部九州野鳥 BirdNET 追加学習
+﻿# BIRDPJ — 北部九州野鳥 BirdNET 追加学習
 
 北部九州（福岡・佐賀・長崎・大分・熊本）の野鳥音声データを Xeno-canto から収集し、BirdNET モデルに追加学習させるパイプライン。
 
@@ -18,10 +18,7 @@
 ## セットアップ
 
 ```bash
-# 依存パッケージのインストール（uv 推奨）
 uv sync
-
-# Xeno-canto API キーを設定
 cp .env.example .env
 # .env に XENOCANTO_API_KEY を記入
 ```
